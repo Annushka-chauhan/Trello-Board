@@ -1,0 +1,131 @@
+.modal-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+.modal{
+
+    width:420px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+
+    animation:popup .25s ease;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.9);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+.modal h2{
+
+    margin-bottom:25px;
+
+    color:#172b4d;
+
+}
+
+.modal input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #d9d9d9;
+
+    margin-bottom:25px;
+
+    font-size:15px;
+
+    outline:none;
+
+}
+
+.modal input:focus{
+
+    border-color:#0d6efd;
+
+}
+
+.modal-buttons{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+}
+
+.cancel-btn{
+
+    border:none;
+
+    padding:12px 20px;
+
+    background:#ececec;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.create-btn{
+
+    border:none;
+
+    padding:12px 22px;
+
+    background:#0d6efd;
+
+    color:white;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.create-btn:hover{
+
+    background:#0957d3;
+
+}

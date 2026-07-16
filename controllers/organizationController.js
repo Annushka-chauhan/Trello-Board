@@ -1,4 +1,5 @@
-const { organizationModel, userModel } = require("../models");
+const organizationModel = require("../models/Organization");
+const userModel = require("../models/User");
 const { ROLE } = require("../utils/constants");
 const createOrganization = async (req, res) => {
     try {

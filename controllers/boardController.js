@@ -1,4 +1,9 @@
-const { boardModel, organizationModel } = require("../models");
+
+const boardModel = require("../models/Board");
+const organizationModel = require("../models/Organization");
+
+console.log("Board Model:", boardModel);
+console.log("Organization Model:", organizationModel);
 const { ROLE } = require("../utils/constants");
 
 const createBoard = async (req, res) => {
@@ -117,7 +122,63 @@ const getBoards = async (req, res) => {
 
 };
 
+const getBoardById = async (req, res) => {
+
+    try {
+
+        const userId = req.userId;
+        const boardId = req.params.boardId;
+
+        const board = await boardModel.findById(boardId);
+
+        if (!board) {
+            return res.status(404).json({
+                message: "Board not found"
+            });
+        }
+
+        const organization = await organizationModel.findById(
+            board.organizationId
+        );
+
+        if (!organization) {
+            return res.status(404).json({
+                message: "Organization not found"
+            });
+        }
+
+        const isAdmin =
+            organization.admin.toString() === userId;
+
+        const isMember =
+            organization.members.some(
+                member => member.toString() === userId
+            );
+
+        if (!isAdmin && !isMember) {
+            return res.status(403).json({
+                message: "Access denied"
+            });
+        }
+
+        res.status(200).json({
+            board
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            message: "Internal Server Error"
+        });
+
+    }
+
+};
+
 module.exports = {
     createBoard,
-    getBoards
+    getBoards,
+    getBoardById
 };

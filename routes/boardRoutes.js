@@ -2,10 +2,13 @@ const express = require("express");
 
 const {
     createBoard,
-    getBoards
+    getBoards,
+    getBoardById
 } = require("../controllers/boardController");
 
-const { authMiddleware } = require("../middleware/authMiddleware");
+const {
+    authMiddleware
+} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -22,5 +25,13 @@ router.get(
     authMiddleware,
     getBoards
 );
+
+// Get Single Board
+router.get(
+    "/board/:boardId",
+    authMiddleware,
+    getBoardById
+);
+
 
 module.exports = router;
