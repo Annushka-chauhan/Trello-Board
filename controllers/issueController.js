@@ -1,9 +1,10 @@
-const {
-    issueModel,
-    boardModel,
-    organizationModel
-} = require("../models");
+const issueModel = require("../models/Issue");
+const boardModel = require("../models/Board");
+const organizationModel = require("../models/Organization");
 
+// -----------------------------
+// Create Issue
+// -----------------------------
 const createIssue = async (req, res) => {
 
     try {
@@ -14,7 +15,8 @@ const createIssue = async (req, res) => {
             boardId,
             title,
             description,
-            status
+            status,
+            priority
         } = req.body;
 
         if (!boardId || !title) {
@@ -56,15 +58,21 @@ const createIssue = async (req, res) => {
         }
 
         const issue = await issueModel.create({
+
             title,
             description,
             boardId,
-            status
+            status,
+            priority,
+            createdBy: userId
+
         });
 
         res.status(201).json({
+
             message: "Issue created successfully",
-            issueId: issue._id
+            issue
+
         });
 
     } catch (err) {
@@ -79,6 +87,9 @@ const createIssue = async (req, res) => {
 
 };
 
+// -----------------------------
+// Get Issues
+// -----------------------------
 const getIssues = async (req, res) => {
 
     try {
@@ -144,6 +155,9 @@ const getIssues = async (req, res) => {
 
 };
 
+// -----------------------------
+// Update Issue
+// -----------------------------
 const updateIssue = async (req, res) => {
 
     try {
@@ -152,7 +166,8 @@ const updateIssue = async (req, res) => {
             issueId,
             title,
             description,
-            status
+            status,
+            priority
         } = req.body;
 
         const issue = await issueModel.findById(issueId);
@@ -164,14 +179,18 @@ const updateIssue = async (req, res) => {
         }
 
         await issueModel.updateOne(
+
             {
                 _id: issueId
             },
+
             {
                 title,
                 description,
-                status
+                status,
+                priority
             }
+
         );
 
         res.json({
@@ -191,7 +210,9 @@ const updateIssue = async (req, res) => {
 };
 
 module.exports = {
+
     createIssue,
     getIssues,
     updateIssue
+
 };
