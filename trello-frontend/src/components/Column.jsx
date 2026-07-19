@@ -1,30 +1,54 @@
+import { Droppable } from "@hello-pangea/dnd";
+
+import TaskCard from "./TaskCard";
+
 import "../styles/Column.css";
 
-function Column({ title }) {
+function Column({ title, issues }) {
 
     return (
 
-        <div className="column">
+        <Droppable droppableId={title}>
 
-            <div className="column-header">
+            {(provided) => (
 
-                <h2>{title}</h2>
+                <div
+                    className="column"
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                >
 
-            </div>
+                    <div className="column-header">
 
-            <div className="column-body">
+                        <h2>{title}</h2>
 
-                {/* Task cards will come here */}
+                    </div>
 
-            </div>
+                    <div className="column-body">
 
-            <button className="add-task-btn">
+                        {
 
-                + Add Task
+                            issues.map((issue, index) => (
 
-            </button>
+                                <TaskCard
+                                    key={issue._id}
+                                    issue={issue}
+                                    index={index}
+                                />
 
-        </div>
+                            ))
+
+                        }
+
+                        {provided.placeholder}
+
+                    </div>
+
+                </div>
+
+            )}
+
+        </Droppable>
 
     );
 

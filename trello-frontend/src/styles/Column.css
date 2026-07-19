@@ -1,69 +1,85 @@
-.column{
+.column {
 
-    width:320px;
+    background: white;
 
-    min-height:650px;
+    flex: 1;
 
-    background:white;
+    min-width: 300px;
 
-    border-radius:16px;
+    max-width: 340px;
 
-    padding:18px;
+    min-height: 650px;
 
-    display:flex;
+    border-radius: 18px;
 
-    flex-direction:column;
+    padding: 18px;
 
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    display: flex;
 
-}
+    flex-direction: column;
 
-.column-header{
-
-    margin-bottom:18px;
-
-    padding-bottom:12px;
-
-    border-bottom:1px solid #ececec;
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
 
 }
 
-.column-header h2{
+.column-header {
 
-    color:#172b4d;
+    border-bottom: 1px solid #E5E7EB;
 
-    font-size:20px;
+    padding-bottom: 12px;
 
-}
-
-.column-body{
-
-    flex:1;
+    margin-bottom: 18px;
 
 }
 
-.add-task-btn{
+.column-header h2 {
 
-    border:none;
+    text-align: center;
 
-    background:#eef3ff;
+    color: #0052CC;
 
-    color:#0d6efd;
+    font-size: 28px;
 
-    border-radius:10px;
+}
 
-    padding:12px;
+.column-body {
 
-    cursor:pointer;
+    flex: 1;
 
-    font-weight:600;
+    display: flex;
 
-    transition:.3s;
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+.add-task-btn {
+
+    margin-top: 18px;
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #E9F2FF;
+
+    color: #0052CC;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .25s;
 
 }
 
 .add-task-btn:hover{
 
-    background:#d9e7ff;
+    background:#D6E8FF;
 
 }
